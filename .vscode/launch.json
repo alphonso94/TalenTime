@@ -1,7 +1,28 @@
 {
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
+    {
+      "type": "java",
+      "name": "OpeninnovProjectTalenTimeApplication",
+      "request": "launch",
+      "mainClass": "com.talentime.openinnov.OpeninnovProjectTalenTimeApplication",
+      "projectName": "openinnov",
+      "env": {
+        "DB_USERNAME": "postgres",
+        "DB_PASSWORD": "TalenTime"
+      }
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot - TalenTime Backend",
+      "request": "launch",
+      "mainClass": "com.talenTime.TalenTimeApplication",
+      "projectName": "TalenTime",
+      "env": {
+        "DB_USERNAME": "postgres",
+        "DB_PASSWORD": "TalenTime"
+      }
+    },
     {
       "name": "ng serve",
       "type": "chrome",

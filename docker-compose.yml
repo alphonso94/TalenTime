@@ -1,0 +1,41 @@
+services:
+  # --- Service Base de Données (PostgreSQL) ---
+  db:
+    image: postgres:15
+    container_name: postgres_db
+    environment:
+      # Initialisation de la base (ces valeurs créent la DB au premier lancement)
+      POSTGRES_DB: talentime_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: TalenTime
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - talentime-network
+
+  # --- Service Backend (Ton application Spring Boot) ---
+  backend:
+    build: ./Back
+    container_name: spring_backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      # On injecte les variables que tu as définies dans ton application.properties
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/talentime_db
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=TalenTime
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    networks:
+      - talentime-network
+
+# --- Configuration des volumes et réseaux ---
+volumes:
+  postgres_data:
+
+networks:
+  talentime-network:
+    driver: bridge
