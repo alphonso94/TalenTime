@@ -5206,55 +5206,54 @@ var require_lib = __commonJS({
     var Buffer2 = require_safer().Buffer;
     var bomHandling = require_bom_handling();
     var mergeModules = require_merge_exports();
-    var iconv = module.exports;
-    iconv.encodings = null;
-    iconv.defaultCharUnicode = "�";
-    iconv.defaultCharSingleByte = "?";
-    iconv.encode = function encode(str, encoding, options) {
+    module.exports.encodings = null;
+    module.exports.defaultCharUnicode = "�";
+    module.exports.defaultCharSingleByte = "?";
+    module.exports.encode = function encode(str, encoding, options) {
       str = "" + (str || "");
-      var encoder = iconv.getEncoder(encoding, options);
+      var encoder = module.exports.getEncoder(encoding, options);
       var res = encoder.write(str);
       var trail = encoder.end();
       return trail && trail.length > 0 ? Buffer2.concat([res, trail]) : res;
     };
-    iconv.decode = function decode(buf, encoding, options) {
+    module.exports.decode = function decode(buf, encoding, options) {
       if (typeof buf === "string") {
-        if (!iconv.skipDecodeWarning) {
+        if (!module.exports.skipDecodeWarning) {
           console.error("Iconv-lite warning: decode()-ing strings is deprecated. Refer to https://github.com/ashtuchkin/iconv-lite/wiki/Use-Buffers-when-decoding");
-          iconv.skipDecodeWarning = true;
+          module.exports.skipDecodeWarning = true;
         }
         buf = Buffer2.from("" + (buf || ""), "binary");
       }
-      var decoder = iconv.getDecoder(encoding, options);
+      var decoder = module.exports.getDecoder(encoding, options);
       var res = decoder.write(buf);
       var trail = decoder.end();
       return trail ? res + trail : res;
     };
-    iconv.encodingExists = function encodingExists(enc) {
+    module.exports.encodingExists = function encodingExists(enc) {
       try {
-        iconv.getCodec(enc);
+        module.exports.getCodec(enc);
         return true;
       } catch (e) {
         return false;
       }
     };
-    iconv.toEncoding = iconv.encode;
-    iconv.fromEncoding = iconv.decode;
-    iconv._codecDataCache = { __proto__: null };
-    iconv.getCodec = function getCodec(encoding) {
-      if (!iconv.encodings) {
+    module.exports.toEncoding = module.exports.encode;
+    module.exports.fromEncoding = module.exports.decode;
+    module.exports._codecDataCache = { __proto__: null };
+    module.exports.getCodec = function getCodec(encoding) {
+      if (!module.exports.encodings) {
         var raw = require_encodings();
-        iconv.encodings = { __proto__: null };
-        mergeModules(iconv.encodings, raw);
+        module.exports.encodings = { __proto__: null };
+        mergeModules(module.exports.encodings, raw);
       }
-      var enc = iconv._canonicalizeEncoding(encoding);
+      var enc = module.exports._canonicalizeEncoding(encoding);
       var codecOptions = {};
       while (true) {
-        var codec = iconv._codecDataCache[enc];
+        var codec = module.exports._codecDataCache[enc];
         if (codec) {
           return codec;
         }
-        var codecDef = iconv.encodings[enc];
+        var codecDef = module.exports.encodings[enc];
         switch (typeof codecDef) {
           case "string":
             enc = codecDef;
@@ -5272,47 +5271,47 @@ var require_lib = __commonJS({
             if (!codecOptions.encodingName) {
               codecOptions.encodingName = enc;
             }
-            codec = new codecDef(codecOptions, iconv);
-            iconv._codecDataCache[codecOptions.encodingName] = codec;
+            codec = new codecDef(codecOptions, module.exports);
+            module.exports._codecDataCache[codecOptions.encodingName] = codec;
             return codec;
           default:
             throw new Error("Encoding not recognized: '" + encoding + "' (searched as: '" + enc + "')");
         }
       }
     };
-    iconv._canonicalizeEncoding = function(encoding) {
+    module.exports._canonicalizeEncoding = function(encoding) {
       return ("" + encoding).toLowerCase().replace(/:\d{4}$|[^0-9a-z]/g, "");
     };
-    iconv.getEncoder = function getEncoder(encoding, options) {
-      var codec = iconv.getCodec(encoding);
+    module.exports.getEncoder = function getEncoder(encoding, options) {
+      var codec = module.exports.getCodec(encoding);
       var encoder = new codec.encoder(options, codec);
       if (codec.bomAware && options && options.addBOM) {
         encoder = new bomHandling.PrependBOM(encoder, options);
       }
       return encoder;
     };
-    iconv.getDecoder = function getDecoder(encoding, options) {
-      var codec = iconv.getCodec(encoding);
+    module.exports.getDecoder = function getDecoder(encoding, options) {
+      var codec = module.exports.getCodec(encoding);
       var decoder = new codec.decoder(options, codec);
       if (codec.bomAware && !(options && options.stripBOM === false)) {
         decoder = new bomHandling.StripBOM(decoder, options);
       }
       return decoder;
     };
-    iconv.enableStreamingAPI = function enableStreamingAPI(streamModule2) {
-      if (iconv.supportsStreams) {
+    module.exports.enableStreamingAPI = function enableStreamingAPI(streamModule2) {
+      if (module.exports.supportsStreams) {
         return;
       }
       var streams = require_streams()(streamModule2);
-      iconv.IconvLiteEncoderStream = streams.IconvLiteEncoderStream;
-      iconv.IconvLiteDecoderStream = streams.IconvLiteDecoderStream;
-      iconv.encodeStream = function encodeStream(encoding, options) {
-        return new iconv.IconvLiteEncoderStream(iconv.getEncoder(encoding, options), options);
+      module.exports.IconvLiteEncoderStream = streams.IconvLiteEncoderStream;
+      module.exports.IconvLiteDecoderStream = streams.IconvLiteDecoderStream;
+      module.exports.encodeStream = function encodeStream(encoding, options) {
+        return new module.exports.IconvLiteEncoderStream(module.exports.getEncoder(encoding, options), options);
       };
-      iconv.decodeStream = function decodeStream(encoding, options) {
-        return new iconv.IconvLiteDecoderStream(iconv.getDecoder(encoding, options), options);
+      module.exports.decodeStream = function decodeStream(encoding, options) {
+        return new module.exports.IconvLiteDecoderStream(module.exports.getDecoder(encoding, options), options);
       };
-      iconv.supportsStreams = true;
+      module.exports.supportsStreams = true;
     };
     var streamModule;
     try {
@@ -5320,9 +5319,9 @@ var require_lib = __commonJS({
     } catch (e) {
     }
     if (streamModule && streamModule.Transform) {
-      iconv.enableStreamingAPI(streamModule);
+      module.exports.enableStreamingAPI(streamModule);
     } else {
-      iconv.encodeStream = iconv.decodeStream = function() {
+      module.exports.encodeStream = module.exports.decodeStream = function() {
         throw new Error("iconv-lite Streaming API is not enabled. Use iconv.enableStreamingAPI(require('stream')); to enable it.");
       };
     }
