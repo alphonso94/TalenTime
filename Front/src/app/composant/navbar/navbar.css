@@ -1,0 +1,161 @@
+.hero-image {
+    height: 100vh;
+    background-image: url('/universite-accueil.jpg'); 
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  
+  .hero-title {
+    font-size: 6rem;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-family: 'Satisfy', arial, sans-serif;
+  }
+  
+  .scroll-down {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 3rem;
+    cursor: pointer;
+  }
+  
+  header {
+    background-color: var(--ma-couleur-primaire);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+    position: relative;
+    font-family: 'Montserrat', arial, sans-serif;
+    font-size: 1.6rem;
+  }
+  
+  .upHeader {
+    height: 15vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 1rem;
+  }
+  
+  .epsiHeader {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 5vh;
+    left: 5vw;
+  }
+  
+  .epsiLogo {
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+  }
+  
+  .epsiText {
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .name {
+    text-align: center;
+  }
+  
+  .name h1 {
+    display: flex;
+    text-align: center;
+    padding: 50px;
+    font-size: 40px;
+    font-weight: bold;
+    font-family: 'Satisfy', arial, sans-serif;
+  }
+  
+  .menu {
+    width: 100%;
+  }
+  
+  .menu ul {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+  }
+  
+  .menu li {
+    margin-right: 1rem;
+    transition: transform 0.2s ease;
+    padding-left: 2vw;
+  }
+  
+  .menu a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  
+  .menu a:hover {
+    color: var(--ma-couleur-secondaire);
+  }
+  
+  .menu li:hover {
+    transform: scale(1.05);
+  }
+  
+  .logoID {
+    position: absolute;
+    top: 25px;
+    right: 50px;
+    max-width: 100%;
+    width: 15%;
+    height: auto;
+    margin: 10px;
+    cursor: pointer;
+  }
+  
+  .logoID svg {
+    width: 20%;
+    height: auto;
+    float: right;
+    transition: all 0.3s ease;
+  }
+  
+  .logoID svg:hover {
+    transform: scale(1.1);
+    color: var(--ma-couleur-secondaire);
+  }
+  
+  #user-options {
+    position: absolute;
+    top: 55%;
+    left: 90%;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  
+  #user-options:hover {
+    background-color: var(--ma-couleur-secondaire);
+    box-shadow: 0 2px 5px rgba(249, 208, 82, 0.2);
+  }
+  
+  #user-options a {
+    display: block;
+    padding: 2px 0;
+    text-decoration: none;
+    color: var(--ma-couleur-primaire);
+    font-size: 1.2rem;
+  }
+  
+  #user-options a:hover {
+    background-color: var(--ma-couleur-secondaire);
+  }
+  
