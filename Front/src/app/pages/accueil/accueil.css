@@ -1,0 +1,95 @@
+/* Hero Section */
+.hero-section {
+  padding: 100px 0;
+  background: linear-gradient(rgba(0,0,0,0.02), rgba(0,0,0,0.02)), url('/assets/pattern.png');
+}
+
+.main-slogan {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  max-width: 900px;
+  margin: 0 auto 20px;
+}
+
+.sub-slogan {
+  font-size: 1.25rem;
+  color: #666;
+  max-width: 700px;
+  margin: 0 auto 40px;
+}
+
+.btn-main {
+  background-color: #007bff;
+  color: white;
+  padding: 15px 40px;
+  border-radius: 50px;
+  border: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: 0.3s;
+}
+
+.btn-main:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+/* Services */
+.service-card {
+  padding: 30px;
+  transition: 0.3s;
+}
+
+.service-icon {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+/* Event Cards */
+.event-card {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  position: relative;
+  transition: 0.3s;
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.event-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #007bff;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.event-badge.virtual {
+  background: #6f42c1;
+}
+
+.event-content {
+  padding: 25px;
+}
+
+.event-date {
+  color: #007bff;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.event-content h3 {
+  margin: 10px 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+}

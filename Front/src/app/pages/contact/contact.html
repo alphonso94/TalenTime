@@ -1,0 +1,77 @@
+<div class="contact-container py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="card shadow-sm p-4">
+            <h2 class="text-center mb-4">Contactez-nous</h2>
+            
+            @if (submitted) {
+              <div class="alert alert-success text-center">
+                <h4>Merci !</h4>
+                <p>Votre demande a été envoyée avec succès. Notre équipe reviendra vers vous rapidement.</p>
+                <button class="btn btn-outline-success btn-sm" (click)="submitted = false">Envoyer un autre message</button>
+              </div>
+            } @else {
+              <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+                
+                <div class="mb-4">
+                  <label class="form-label fw-bold">Je souhaite *</label>
+                  <select formControlName="objet" class="form-select" [class.is-invalid]="contactForm.get('objet')?.invalid && contactForm.get('objet')?.touched">
+                    <option value="" disabled selected>Choisissez une option...</option>
+                    <option value="JPO">Organiser une Journée Portes Ouvertes</option>
+                    <option value="FORUM">Organiser un forum virtuel entreprise – étudiants</option>
+                    <option value="AUTRE">Autre demande</option>
+                  </select>
+                  <div class="invalid-feedback">Veuillez sélectionner l'objet de votre demande.</div>
+                </div>
+  
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label class="form-label">Prénom *</label>
+                    <input type="text" formControlName="prenom" class="form-control" placeholder="Jean">
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label class="form-label">Nom *</label>
+                    <input type="text" formControlName="nom" class="form-control" placeholder="Dupont">
+                  </div>
+                </div>
+  
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label class="form-label">Email professionnel *</label>
+                    <input type="email" formControlName="email" class="form-control" placeholder="nom@entreprise.com">
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label class="form-label">Téléphone</label>
+                    <input type="tel" formControlName="telephone" class="form-control" placeholder="06XXXXXXXX">
+                  </div>
+                </div>
+  
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label class="form-label">Organisation / Entreprise *</label>
+                    <input type="text" formControlName="organisation" class="form-control">
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label class="form-label">Région / Cible *</label>
+                    <input type="text" formControlName="region" class="form-control" placeholder="ex: Occitanie">
+                  </div>
+                </div>
+  
+                <div class="mb-3">
+                  <label class="form-label">Message détaillé *</label>
+                  <textarea formControlName="message" class="form-control" rows="5" placeholder="Décrivez votre projet en quelques mots..."></textarea>
+                </div>
+  
+                <div class="text-center mt-4">
+                  <button type="submit" [disabled]="contactForm.invalid" class="btn btn-primary btn-lg px-5">
+                    Envoyer ma demande
+                  </button>
+                </div>
+              </form>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

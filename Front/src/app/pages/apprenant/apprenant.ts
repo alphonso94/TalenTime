@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-apprenant',
-  imports: [],
+  standalone: true,
+  imports: [RouterLink],
   templateUrl: './apprenant.html',
-  styleUrl: './apprenant.css',
+  styleUrls: ['./apprenant.css'] // Vous pouvez réutiliser le même CSS que l'entreprise
 })
-export class Apprenant {
-
-}
+export class ProfilApprenantComponent {}

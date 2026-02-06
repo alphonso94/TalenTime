@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-entreprise',
-  imports: [],
+  standalone: true,
+  imports: [RouterLink],
   templateUrl: './entreprise.html',
-  styleUrl: './entreprise.css',
+  styleUrls: ['./entreprise.css']
 })
 export class Entreprise {
-
+  // Logique de navigation ou redirection si nécessaire
 }

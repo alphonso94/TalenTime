@@ -5,8 +5,8 @@
 <header>
     <div class="upHeader">
         <div class="epsiHeader">
-            <img src="logoEPSIheader.png" alt="EPSI Logo" class="epsiLogo">
-            <span class="epsiText">epsi</span>
+            <a routerLink="accueil" class="home-link"> <img src="talent-time.png" alt="logo talentime" class="epsiLogo">
+            </a>
         </div>
         <div class="name">
             <h1>Talent Time</h1>
@@ -14,12 +14,16 @@
     </div>
     <nav class="menu">
         <ul>
-            <li><a href="index.html">Accueil</a></li>
-            <li><a href="apprenant.html">Apprenants</a></li>
-            <li><a href="entreprise.html">Entreprises</a></li>
+            <li><a routerLink="apprenant" >Je suis apprenant</a></li>
+            <li><a routerLink="entreprise">Je suis une entreprise</a></li>
+            <li><a routerLink="contact">Contactez-nous </a></li>
+            <li><a routerLink="connexion">Connexion</a></li>
+
+
+
         </ul>
     </nav>
-      <div class="logoID" id="user-menu">
+      <!-- <div class="logoID" id="user-menu">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
             class="bi bi-person-circle" viewBox="0 0 16 16">
             <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
@@ -27,6 +31,7 @@
                 d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
         </svg>
     </div>
+     -->
     <div id="user-options" style="display: none;">
         <a href="connexion.html">Mon compte</a>
     </div>

@@ -1,5 +1,5 @@
 .hero-image {
-    height: 100vh;
+    height: 40vh;
     background-image: url('/universite-accueil.jpg'); 
     background-size: cover;
     background-position: center;
@@ -55,16 +55,16 @@
   }
   
   .epsiLogo {
-    width: 50px;
-    height: auto;
-    margin-right: 10px;
+    width: 130px;
+  height: 130px;
+  background-color: white; /* Créé le cercle blanc derrière le logo */
+  border-radius: 50%;      /* Rend le fond circulaire */
+  padding: 5px;
+  object-fit: contain;
   }
   
-  .epsiText {
-    font-size: 3rem;
-    font-weight: bold;
-    color: white;
-  }
+  
+  
   
   .name {
     text-align: center;

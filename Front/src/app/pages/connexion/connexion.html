@@ -1,0 +1,41 @@
+<div class="auth-container">
+    <h2>{{ mode === 'login' ? 'Connexion' : 'Inscription' }}</h2>
+  
+    <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
+      
+      @if (mode === 'register') {
+        <div class="mb-3">
+          <label class="form-label">Nom complet</label>
+          <input type="text" formControlName="nom" class="form-control" placeholder="Jean Dupont">
+        </div>
+      }
+  
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" formControlName="email" class="form-control" placeholder="exemple@mail.com">
+      </div>
+  
+      <div class="mb-3">
+        <label class="form-label">Mot de passe</label>
+        <input type="password" formControlName="password" class="form-control" placeholder="******">
+      </div>
+  
+      <button type="submit" [disabled]="authForm.invalid" class="btn btn-primary w-100">
+        {{ mode === 'login' ? 'Se connecter' : "Créer mon compte" }}
+      </button>
+    </form>
+  
+    <hr>
+  
+    <div class="text-center">
+      @if (mode === 'login') {
+        <p>Pas encore de compte ? 
+          <button type="button" (click)="toggleMode()" class="btn btn-link">Inscrivez-vous</button>
+        </p>
+      } @else {
+        <p>Déjà un compte ? 
+          <button type="button" (click)="toggleMode()" class="btn btn-link">Connectez-vous</button>
+        </p>
+      }
+    </div>
+  </div>

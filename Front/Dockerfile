@@ -1,29 +1,36 @@
-# Utiliser une image de base pour Node.js
-FROM node:20-alpine AS build
+# =========================
+# Étape 1 : Build Angular SSR
+# =========================
+FROM node:20 AS build
 
-# Définir le répertoire de travail dans le conteneur
 WORKDIR /app
 
-# Copier les fichiers package.json et package-lock.json
+# Dépendances
 COPY package*.json ./
-
-# Installer les dépendances
 RUN npm install
 
-# Copier le reste des fichiers du projet dans le conteneur
+# Code source
 COPY . .
 
-# Construire l'application pour la production
+# Build SSR (respecte angular.json)
 RUN npm run build
 
-# Utiliser une image de base Nginx pour servir l'application
-FROM nginx:alpine
+# =========================
+# Étape 2 : Run SSR Server
+# =========================
+FROM node:20-alpine 
 
-# Copier les fichiers construits dans le dossier de Nginx
-COPY --from=build /app/build /usr/share/nginx/html
+WORKDIR /app
 
-# Exposer le port 80
-EXPOSE 80
+# Copier uniquement ce qui est nécessaire
+COPY --from=build /app/dist ./dist
+COPY package*.json ./
 
-# Commande par défaut pour démarrer Nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Installer dépendances PROD uniquement
+RUN npm install --omit=dev
+
+# Port SSR (Angular par défaut : 4000)
+EXPOSE 4000
+
+# Lancer le serveur SSR
+CMD ["node", "dist/Talentime/server/server.mjs"]

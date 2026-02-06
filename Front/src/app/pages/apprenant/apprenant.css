@@ -1,0 +1,23 @@
+/* Reprend la structure de entreprise.css */
+
+.candidat-page .hero-section {
+  background: linear-gradient(135deg, #eefaf3 0%, #ffffff 100%); /* Teinte plus verte/douce */
+}
+
+.text-success {
+  color: #28a745 !important;
+}
+
+.btn-success {
+  background-color: #28a745;
+  border-color: #28a745;
+  padding: 12px 30px;
+  font-weight: 600;
+}
+
+/* On inverse l'ordre sur mobile pour que l'image reste cohérente */
+@media (max-width: 991px) {
+  .flex-row-reverse {
+    flex-direction: column-reverse !important;
+  }
+}
