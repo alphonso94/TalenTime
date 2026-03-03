@@ -3,7 +3,8 @@ import { RouterOutlet } from '@angular/router';
 import { Navbar } from "./composant/navbar/navbar";
 import { Footer } from './composant/footer/footer';
 import { AccueilComponent } from "./pages/accueil/accueil";
-import { ProfilApprenantComponent } from './pages/apprenant/apprenant';
+import { AccueilApprenant } from "./pages/apprenant/accueil-apprenant/accueil-apprenant";
+import { AccueilEntreprise } from "./pages/entreprise/accueil-entreprise/accueil-entreprise";
 
 @Component({
   selector: 'app-root',

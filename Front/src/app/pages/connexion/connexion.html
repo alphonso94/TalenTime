@@ -1,41 +1,55 @@
-<div class="auth-container">
-    <h2>{{ mode === 'login' ? 'Connexion' : 'Inscription' }}</h2>
-  
-    <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
-      
-      @if (mode === 'register') {
-        <div class="mb-3">
-          <label class="form-label">Nom complet</label>
-          <input type="text" formControlName="nom" class="form-control" placeholder="Jean Dupont">
+<div class="login-wrapper py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-5">
+        <div class="card shadow-lg border-0">
+          <div class="card-body p-4 p-md-5">
+            
+            <h2 class="text-center mb-4 fw-bold">Connexion</h2>
+
+            <div class="profile-selector d-flex mb-4">
+              <button type="button" class="btn-select flex-grow-1" 
+                [class.active]="userType === 'apprenant'"
+                (click)="setProfile('apprenant')">🎓 Étudiant</button>
+              <button type="button" class="btn-select flex-grow-1" 
+                [class.active]="userType === 'entreprise'"
+                (click)="setProfile('entreprise')">🏢 Entreprise</button>
+            </div>
+
+            <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+              <div class="mb-3">
+                <label class="form-label">Email professionnel ({{ userType === 'apprenant' ? 'EPSI' : 'Société' }})</label>
+                <input type="email" formControlName="email" class="form-control" placeholder="nom@exemple.com">
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Mot de passe</label>
+                <input type="password" formControlName="password" class="form-control" placeholder="••••••••">
+              </div>
+
+              <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary w-100 py-2 mb-3">
+                Se connecter
+              </button>
+            </form>
+
+            <hr>
+
+            <div class="text-center mt-3">
+              <p class="mb-1 text-muted">Pas encore de compte ?</p>
+              @if (userType === 'apprenant') {
+                <button class="btn btn-outline-success w-100" routerLink="/inscription">
+                  Créer mon profil Candidat
+                </button>
+              } @else {
+                <button class="btn btn-outline-primary w-100" routerLink="/inscription-entreprise">
+                  Créer un compte Partenaire
+                </button>
+              }
+            </div>
+
+          </div>
         </div>
-      }
-  
-      <div class="mb-3">
-        <label class="form-label">Email</label>
-        <input type="email" formControlName="email" class="form-control" placeholder="exemple@mail.com">
       </div>
-  
-      <div class="mb-3">
-        <label class="form-label">Mot de passe</label>
-        <input type="password" formControlName="password" class="form-control" placeholder="******">
-      </div>
-  
-      <button type="submit" [disabled]="authForm.invalid" class="btn btn-primary w-100">
-        {{ mode === 'login' ? 'Se connecter' : "Créer mon compte" }}
-      </button>
-    </form>
-  
-    <hr>
-  
-    <div class="text-center">
-      @if (mode === 'login') {
-        <p>Pas encore de compte ? 
-          <button type="button" (click)="toggleMode()" class="btn btn-link">Inscrivez-vous</button>
-        </p>
-      } @else {
-        <p>Déjà un compte ? 
-          <button type="button" (click)="toggleMode()" class="btn btn-link">Connectez-vous</button>
-        </p>
-      }
     </div>
   </div>
+</div>

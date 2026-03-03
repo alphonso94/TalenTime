@@ -1,0 +1,33 @@
+.dashboard-entreprise {
+    background-color: #f0f2f5;
+    min-height: 100vh;
+    padding-bottom: 50px;
+  }
+  
+  .card {
+    border-radius: 12px;
+  }
+  
+  .navbar {
+    height: 60px;
+  }
+  
+  .badge {
+    font-weight: 500;
+    padding: 6px 10px;
+  }
+  
+  .table thead th {
+    border-top: none;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: #6c757d;
+  }
+  
+  .btn-primary {
+    background-color: #0d6efd;
+  }
+  
+  .list-group-item:hover {
+    background-color: #f8f9fa;
+  }

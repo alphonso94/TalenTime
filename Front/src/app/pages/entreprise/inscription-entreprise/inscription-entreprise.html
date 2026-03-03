@@ -1,0 +1,65 @@
+<div class="registration-wrapper py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-7">
+          <div class="card shadow-lg border-0">
+            <div class="card-body p-5">
+              <h2 class="text-center mb-4 fw-bold text-primary">Créer un compte Entreprise</h2>
+              <p class="text-center text-muted mb-5">Rejoignez le réseau EPSI et recrutez vos futurs talents.</p>
+  
+              <form [formGroup]="entrepriseForm" (ngSubmit)="onRegister()">
+                
+                <h5 class="section-title">🏢 Informations de la société</h5>
+                <div class="row">
+                  <div class="col-md-12 mb-3">
+                    <label class="form-label">Nom de l'entreprise *</label>
+                    <input type="text" formControlName="nomEntreprise" class="form-control" placeholder="Ex: Tech Solutions">
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label class="form-label">Numéro SIRET (14 chiffres) *</label>
+                    <input type="text" formControlName="siret" class="form-control" placeholder="12345678901234">
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label class="form-label">Secteur d'activité *</label>
+                    <select formControlName="secteur" class="form-select">
+                      <option value="">Choisir...</option>
+                      <option value="IT">Informatique / Digital</option>
+                      <option value="Cyber">Cybersécurité</option>
+                      <option value="Data">Data / IA</option>
+                    </select>
+                  </div>
+                </div>
+  
+                <h5 class="section-title mt-4">👤 Votre compte recruteur</h5>
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label class="form-label">Nom du contact *</label>
+                    <input type="text" formControlName="nomContact" class="form-control">
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label class="form-label">Email professionnel *</label>
+                    <input type="email" formControlName="emailPro" class="form-control">
+                  </div>
+                  <div class="col-md-12 mb-3">
+                    <label class="form-label">Mot de passe *</label>
+                    <input type="password" formControlName="password" class="form-control" placeholder="Minimum 8 caractères">
+                  </div>
+                </div>
+  
+                <div class="form-check mb-4">
+                  <input type="checkbox" formControlName="acceptTerms" class="form-check-input" id="terms">
+                  <label class="form-check-label" for="terms">
+                    J'accepte les <a href="/cgu" target="_blank">CGU</a> et la <a href="/confidentialite" target="_blank">Politique de Confidentialité</a>.
+                  </label>
+                </div>
+  
+                <button type="submit" [disabled]="entrepriseForm.invalid" class="btn btn-primary btn-lg w-100 shadow">
+                  Créer mon compte partenaire
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

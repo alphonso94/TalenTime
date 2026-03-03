@@ -1,0 +1,34 @@
+.dashboard-container {
+    padding: 30px;
+    background-color: #f8f9fa;
+    min-height: 90vh;
+  }
+  
+  .card-header {
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+  
+  .profile-pic {
+    width: 80px;
+    height: 80px;
+    background-color: #dee2e6;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+  }
+  
+  .offre-item:last-child {
+    border-bottom: none !important;
+  }
+  
+  .btn-danger {
+    background-color: #dc3545;
+    border: none;
+  }
+  
+  .btn-danger:hover {
+    background-color: #c82333;
+  }

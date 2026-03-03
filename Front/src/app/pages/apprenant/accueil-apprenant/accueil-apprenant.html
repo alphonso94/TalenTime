@@ -1,0 +1,59 @@
+<div class="dashboard-container">
+    <header class="d-flex justify-content-between align-items-center mb-4">
+      <h1>Bienvenue, {{ apprenantNom }} 👋</h1>
+      <button class="btn btn-danger" (click)="logout()">Déconnexion</button>
+    </header>
+  
+    <div class="row g-4">
+      
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-header bg-primary text-white">📅 Mes Rendez-vous</div>
+          <div class="card-body">
+            <!--@if (rendez-vous.length > 0) {
+              <ul class="list-group list-group-flush">
+                @for (rdv of rendezVous; track rdv.entreprise) {
+                  <li class="list-group-item">
+                    <strong>{{ rdv.entreprise }}</strong> <br>
+                    <small class="text-muted">{{ rdv.date }} à {{ rdv.heure }} ({{ rdv.type }})</small>
+                  </li>
+                }
+              </ul>
+            } @else {
+              <p class="text-muted text-center">Aucun rendez-vous prévu.</p>
+            }
+            -->
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-md-5">
+        <div class="card h-100 shadow-sm">
+          <div class="card-header bg-success text-white">💼 Offres du moment</div>
+          <div class="card-body">
+            @for (offre of offresRecentes; track offre.poste) {
+              <div class="offre-item mb-3 p-2 border-bottom">
+                <h6>{{ offre.poste }}</h6>
+                <p class="mb-1 small">{{ offre.entreprise }} - {{ offre.ville }}</p>
+                <button class="btn btn-sm btn-outline-success">Postuler</button>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-md-3">
+        <div class="card h-100 shadow-sm text-center p-3">
+          <div class="profile-pic mb-3 mx-auto">👤</div>
+          <h5>Mon Profil</h5>
+          <hr>
+          <div class="cv-box p-3 bg-light rounded border mb-3">
+            <p class="mb-2">📄 Mon_CV_2026.pdf</p>
+            <button class="btn btn-primary btn-sm w-100" (click)="voirCV()">Voir / Modifier</button>
+          </div>
+          <button class="btn btn-link btn-sm text-decoration-none">Compléter mon profil</button>
+        </div>
+      </div>
+  
+    </div>
+  </div>
