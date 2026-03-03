@@ -30,8 +30,12 @@ RUN rm -rf /usr/share/nginx/html/* \
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copier les fichiers buildés depuis le stage 1
-# ⚠️  Adapter "my-app" au nom de ton projet dans angular.json → outputPath
-COPY --from=builder /app/dist/Talentime/browser /usr/share/nginx/html
+COPY --from=builder /app/dist/Talentime/browser /usr/share/nginx/html/
+
+# Renommer index.csr.html → index.html si présent
+RUN if [ -f /usr/share/nginx/html/index.csr.html ]; then \
+      mv /usr/share/nginx/html/index.csr.html /usr/share/nginx/html/index.html; \
+    fi
 
 # Exposer le port 80
 EXPOSE 80
