@@ -1,28 +1,40 @@
-# Étape 1 : Construction (Build)
-FROM node:20-alpine AS build
+# ─────────────────────────────────────────────
+# STAGE 1 — Build Angular
+# ─────────────────────────────────────────────
+FROM node:20-alpine AS builder
+
 WORKDIR /app
 
-COPY package*.json ./
-RUN npm install
+# Copier uniquement les fichiers de dépendances en premier (cache Docker)
+COPY package.json package-lock.json ./
 
+# Installer les dépendances
+RUN npm ci
+
+# Copier le reste du projet
 COPY . .
+
+# Build de production
 RUN npm run build -- --configuration production
 
-# Étape 2 : Serveur de production (Nginx)
-FROM nginx:stable-alpine
+# ─────────────────────────────────────────────
+# STAGE 2 — Servir avec Nginx
+# ─────────────────────────────────────────────
+FROM nginx:1.25-alpine
 
-# On vide le dossier par défaut de Nginx
-RUN rm -rf /usr/share/nginx/html/*
+# Supprimer la config Nginx par défaut
+RUN rm -rf /usr/share/nginx/html/* \
+    && rm /etc/nginx/conf.d/default.conf
 
-# Copie de la configuration Nginx (crucial pour les routes et images)
+# Copier la config Nginx personnalisée
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# COPIE DIRECTE : 
-# On utilise le chemin exact révélé par tes logs d'erreur
-COPY --from=build /app/dist/Talentime/browser /usr/share/nginx/html
+# Copier les fichiers buildés depuis le stage 1
+# ⚠️  Adapter "my-app" au nom de ton projet dans angular.json → outputPath
+COPY --from=builder /app/dist/Talentime/browser /usr/share/nginx/html
 
-# Vérification visuelle lors du build (pour confirmer que les images sont là)
-RUN ls -R /usr/share/nginx/html
-
+# Exposer le port 80
 EXPOSE 80
+
+# Lancer Nginx en foreground
 CMD ["nginx", "-g", "daemon off;"]

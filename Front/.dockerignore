@@ -1,3 +1,10 @@
 node_modules
+dist
 .git
+.gitignore
+*.md
+.env
+.env.*
 .angular
+coverage
+e2e
